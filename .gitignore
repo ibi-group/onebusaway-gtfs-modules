@@ -6,3 +6,5 @@ pom.xml.releaseBackup
 .classpath
 .metadata/
 /.idea/
+pom.xml.versionsBackup
+*.iml
