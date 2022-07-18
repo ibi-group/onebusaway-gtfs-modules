@@ -167,8 +167,38 @@ public class HibernateGtfsRelationalDaoImpl implements GtfsMutableRelationalDao 
   }
 
   @Override
+  public Collection<FareLegRule> getAllFareLegRules() {
+    return _ops.find("FROM FareLegRule");
+  }
+
+  @Override
+  public Collection<FareProduct> getAllFareProducts() {
+    return _ops.find("FROM FareProduct");
+  }
+
+  @Override
+  public FareProduct getFareProductForId(AgencyAndId id) {
+    return _ops.get(FareProduct.class, id);
+  }
+
+  @Override
+  public Collection<FareContainer> getAllFareContainers() {
+    return _ops.find("FROM FareContainer");
+  }
+
+  @Override
+  public Collection<RiderCategory> getAllRiderCategories() {
+    return _ops.find("FROM RiderCategory");
+  }
+
+  @Override
   public FareRule getFareRuleForId(int id) {
     return (FareRule) _ops.get(FareRule.class, id);
+  }
+
+  @Override
+  public Collection<FareTransferRule> getAllFareTransferRules() {
+    return _ops.find("FROM FareTransferRule");
   }
 
   @Override
@@ -268,6 +298,11 @@ public class HibernateGtfsRelationalDaoImpl implements GtfsMutableRelationalDao 
     return _ops.find("from Translation");
   }
 
+  @Override
+  public Collection<StopArea> getAllStopAreas() {
+    return _ops.find("from StopArea");
+  }
+
   /****
    * {@link GtfsRelationalDao} Interface
    ****/
@@ -289,6 +324,11 @@ public class HibernateGtfsRelationalDaoImpl implements GtfsMutableRelationalDao 
     String[] names = { "stationId", "agencyId" };
     Object[] values = { station.getId().getId(), station.getId().getAgencyId() };
     return _ops.findByNamedQueryAndNamedParams("stopsForStation", names, values);
+  }
+
+  @Override
+  public List<Stop> getStopsForZoneId(String zoneId) {
+    return _ops.findByNamedQueryAndNamedParam("stopsForZoneId", "zoneId", zoneId);
   }
 
   @Override
@@ -378,6 +418,18 @@ public class HibernateGtfsRelationalDaoImpl implements GtfsMutableRelationalDao 
   public List<FareRule> getFareRulesForFareAttribute(FareAttribute fareAttribute) {
     return _ops.findByNamedQueryAndNamedParam("fareRulesForFareAttribute",
         "fareAttribute", fareAttribute);
+  }
+
+  @Override
+  public List<FareRule> getFareRulesForRoute(Route route) {
+    return _ops.findByNamedQueryAndNamedParam("fareRulesForRoute",
+            "route", route);
+  }
+
+  @Override
+  public List<FareRule> getFareRulesForZoneId(String zoneId) {
+    return _ops.findByNamedQueryAndNamedParam("fareRulesForZoneId",
+            "zoneId", zoneId);
   }
 
   @Override

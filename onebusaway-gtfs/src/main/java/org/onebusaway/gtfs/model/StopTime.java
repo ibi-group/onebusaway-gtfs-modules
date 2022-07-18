@@ -30,6 +30,8 @@ public final class StopTime extends IdentityBean<Integer> implements
 
   public static final int MISSING_VALUE = -999;
 
+  public static final int MISSING_FLEX_VALUE = 1;
+
   @CsvField(ignore = true)
   private int id;
 
@@ -91,10 +93,10 @@ public final class StopTime extends IdentityBean<Integer> implements
   private double shapeDistTraveled = MISSING_VALUE;
 
   @CsvField(optional = true)
-  private int continuousPickup = MISSING_VALUE;
+  private int continuousPickup = MISSING_FLEX_VALUE;
 
   @CsvField(optional = true)
-  private int continuousDropOff = MISSING_VALUE;
+  private int continuousDropOff = MISSING_FLEX_VALUE;
 
   @CsvField(optional = true, name = "start_service_area_id", mapping = EntityFieldMappingFactory.class, order = -2)
   private Area startServiceArea;
@@ -146,6 +148,9 @@ public final class StopTime extends IdentityBean<Integer> implements
 
   @CsvField(optional = true, name = "safe_duration_offset")
   private double safeDurationOffset = MISSING_VALUE;
+
+  @CsvField(optional = true, name = "free_running_flag")
+  private String freeRunningFlag;
   
   public StopTime() {
 
@@ -185,6 +190,7 @@ public final class StopTime extends IdentityBean<Integer> implements
     this.safeDurationOffset= st.safeDurationOffset;
     this.meanDurationOffset= st.meanDurationOffset;
     this.meanDurationFactor= st.meanDurationFactor;
+    this.freeRunningFlag = st.freeRunningFlag;
   }
 
   public Integer getId() {
@@ -695,4 +701,19 @@ public final class StopTime extends IdentityBean<Integer> implements
 	      }
 	    this.safeDurationOffset = safeDurationOffset;
 	}
+
+  public String getFreeRunningFlag() {
+    if (proxy != null) {
+      return proxy.getFreeRunningFlag();
+    }
+    return freeRunningFlag;
+  }
+
+  public void setFreeRunningFlag(String freeRunningFlag) {
+    if (proxy != null) {
+      proxy.setFreeRunningFlag(freeRunningFlag);
+      return;
+    }
+    this.freeRunningFlag = freeRunningFlag;
+  }
 }

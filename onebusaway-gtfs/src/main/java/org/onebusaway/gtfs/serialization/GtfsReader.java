@@ -74,11 +74,17 @@ public class GtfsReader extends CsvEntityReader {
     _entityClasses.add(Location.class);
     _entityClasses.add(LocationGroupElement.class);
     _entityClasses.add(Trip.class);
+    _entityClasses.add(StopArea.class);
     _entityClasses.add(StopTime.class);
     _entityClasses.add(ServiceCalendar.class);
     _entityClasses.add(ServiceCalendarDate.class);
+    _entityClasses.add(RiderCategory.class);
+    _entityClasses.add(FareContainer.class);
+    _entityClasses.add(FareProduct.class);
+    _entityClasses.add(FareLegRule.class);
     _entityClasses.add(FareAttribute.class);
     _entityClasses.add(FareRule.class);
+    _entityClasses.add(FareTransferRule.class);
     _entityClasses.add(Frequency.class);
     _entityClasses.add(Pathway.class);
     _entityClasses.add(Transfer.class);
@@ -86,6 +92,11 @@ public class GtfsReader extends CsvEntityReader {
     _entityClasses.add(Ridership.class);
     _entityClasses.add(Translation.class);
     _entityClasses.add(Vehicle.class);
+    _entityClasses.add(Facility.class);
+    _entityClasses.add(FacilityPropertyDefinition.class);
+    _entityClasses.add(FacilityProperty.class);
+    _entityClasses.add(RouteNameException.class);
+    _entityClasses.add(DirectionNameException.class);
 
     CsvTokenizerStrategy tokenizerStrategy = new CsvTokenizerStrategy();
     tokenizerStrategy.getCsvParser().setTrimInitialWhitespace(true);
@@ -269,6 +280,15 @@ public class GtfsReader extends CsvEntityReader {
       } else if (entity instanceof Stop) {
         Stop stop = (Stop) entity;
         registerAgencyId(Stop.class, stop.getId());
+      } else if (entity instanceof FareProduct) {
+        FareProduct product = (FareProduct) entity;
+        registerAgencyId(FareProduct.class, product.getId());
+      } else if (entity instanceof FareContainer) {
+        FareContainer container = (FareContainer) entity;
+        registerAgencyId(FareContainer.class, container.getId());
+      } else if (entity instanceof RiderCategory) {
+        RiderCategory category = (RiderCategory) entity;
+        registerAgencyId(RiderCategory.class, category.getId());
       } else if (entity instanceof FareAttribute) {
         FareAttribute fare = (FareAttribute) entity;
         registerAgencyId(FareAttribute.class, fare.getId());
@@ -294,6 +314,12 @@ public class GtfsReader extends CsvEntityReader {
       } else if (entity instanceof Vehicle) {
         Vehicle vehicle = (Vehicle) entity;
         registerAgencyId(Vehicle.class, vehicle.getId());
+      } else if (entity instanceof Facility){
+        Facility facility = (Facility) entity;
+        registerAgencyId(Facility.class, facility.getId());
+      } else if (entity instanceof FacilityPropertyDefinition){
+        FacilityPropertyDefinition facilityPropertyDefinition = (FacilityPropertyDefinition) entity;
+        registerAgencyId(FacilityPropertyDefinition.class, facilityPropertyDefinition.getId());
       }
 
       if (entity instanceof IdentityBean<?>) {

@@ -44,20 +44,31 @@ public class GtfsEntitySchemaFactory {
     entityClasses.add(Route.class);
     entityClasses.add(Level.class);
     entityClasses.add(Stop.class);
+    entityClasses.add(StopArea.class);
     entityClasses.add(LocationGroupElement.class);
     entityClasses.add(Trip.class);
     entityClasses.add(Note.class);
     entityClasses.add(StopTime.class);
     entityClasses.add(ServiceCalendar.class);
     entityClasses.add(ServiceCalendarDate.class);
+    entityClasses.add(RiderCategory.class);
+    entityClasses.add(FareContainer.class);
+    entityClasses.add(FareProduct.class);
+    entityClasses.add(FareLegRule.class);
     entityClasses.add(FareAttribute.class);
     entityClasses.add(FareRule.class);
+    entityClasses.add(FareTransferRule.class);
     entityClasses.add(Frequency.class);
     entityClasses.add(Pathway.class);
     entityClasses.add(Transfer.class);
     entityClasses.add(Ridership.class);
     entityClasses.add(BookingRule.class);
     entityClasses.add(Vehicle.class);
+    entityClasses.add(Facility.class);
+    entityClasses.add(FacilityPropertyDefinition.class);
+    entityClasses.add(FacilityProperty.class);
+    entityClasses.add(RouteNameException.class);
+    entityClasses.add(DirectionNameException.class);
     return entityClasses;
   }
 

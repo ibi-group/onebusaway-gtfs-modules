@@ -97,10 +97,34 @@ public class GtfsDataServiceImpl implements GtfsDataService {
     public Collection<FareAttribute> getAllFareAttributes() {
         return _dao.getAllFareAttributes();
     }
+    @Override
+    public Collection<FareProduct> getAllFareProducts() {
+        return _dao.getAllFareProducts();
+    }
+
+    @Override
+    public FareProduct getFareProductForId(AgencyAndId id) {
+        return _dao.getFareProductForId(id);
+    }
+
+    @Override
+    public Collection<FareContainer> getAllFareContainers() {
+        return _dao.getAllFareContainers();
+    }
+
+    @Override
+    public Collection<RiderCategory> getAllRiderCategories() {
+        return _dao.getAllRiderCategories();
+    }
 
     @Override
     public FareAttribute getFareAttributeForId(AgencyAndId id) {
         return _dao.getFareAttributeForId(id);
+    }
+
+    @Override
+    public Collection<FareLegRule> getAllFareLegRules() {
+        return _dao.getAllFareLegRules();
     }
 
     @Override
@@ -119,8 +143,18 @@ public class GtfsDataServiceImpl implements GtfsDataService {
     }
 
     @Override
+    public List<Stop> getStopsForZoneId(String zoneId) {
+        return _dao.getStopsForZoneId(zoneId);
+    }
+
+    @Override
     public FareRule getFareRuleForId(int id) {
         return _dao.getFareRuleForId(id);
+    }
+
+    @Override
+    public Collection<FareTransferRule> getAllFareTransferRules() {
+        return _dao.getAllFareTransferRules();
     }
 
     @Override
@@ -299,6 +333,16 @@ public class GtfsDataServiceImpl implements GtfsDataService {
     }
 
     @Override
+    public List<FareRule> getFareRulesForRoute(Route route) {
+        return _dao.getFareRulesForRoute(route);
+    }
+
+    @Override
+    public List<FareRule> getFareRulesForZoneId(String zoneId) {
+        return _dao.getFareRulesForZoneId(zoneId);
+    }
+
+    @Override
     public Collection<Ridership> getAllRiderships() {
         return _dao.getAllRiderships();
     }
@@ -331,6 +375,11 @@ public class GtfsDataServiceImpl implements GtfsDataService {
     @Override
     public Collection<Translation> getAllTranslations() {
         return _dao.getAllTranslations();
+    }
+
+    @Override
+    public Collection<StopArea> getAllStopAreas() {
+        return _dao.getAllStopAreas();
     }
 
     @Override
@@ -421,5 +470,27 @@ public class GtfsDataServiceImpl implements GtfsDataService {
     @Override
     public Map<LocalizedServiceId, List<Date>> getPreviousArrivalServiceDates(ServiceIdIntervals serviceIdIntervals, long targetTime) {
         return _calendarService.getPreviousArrivalServiceDates(serviceIdIntervals, targetTime);
+    }
+
+    public Facility getFacilityForId(AgencyAndId id) { return getEntityForId(Facility.class, id);}
+    public FacilityProperty getFacilityPropertiesForId(AgencyAndId id) { return getEntityForId(FacilityProperty.class, id);}
+    public FacilityPropertyDefinition getFacilityPropertiesDefinitionsForId(AgencyAndId id) { return getEntityForId(FacilityPropertyDefinition.class, id);}
+    public RouteNameException getRouteNameExceptionForId(AgencyAndId id) { return getEntityForId(RouteNameException.class, id);}
+    public DirectionNameException getDirectionNameExceptionForId(AgencyAndId id) { return getEntityForId(DirectionNameException.class, id);}
+
+    public Collection<Facility> getAllFacilities() {
+        return getAllEntitiesForType(Facility.class);
+    }
+    public Collection<FacilityProperty> getAllFacilityProperties() {
+        return getAllEntitiesForType(FacilityProperty.class);
+    }
+    public Collection<FacilityPropertyDefinition> getAllFacilityPropertyDefinitions() {
+        return getAllEntitiesForType(FacilityPropertyDefinition.class);
+    }
+    public Collection<RouteNameException> getAllRouteNameExceptions() {
+        return getAllEntitiesForType(RouteNameException.class);
+    }
+    public Collection<DirectionNameException> getAllDirectionNameExceptions() {
+        return getAllEntitiesForType(DirectionNameException.class);
     }
 }
